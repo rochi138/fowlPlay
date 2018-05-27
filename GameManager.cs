@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public GameObject goose;
     public GameObject kid;
     public GameObject inventory;
-    Camera cam;
 
     public int lag;
     public Goose gooseScript;
@@ -17,8 +16,8 @@ public class GameManager : MonoBehaviour
     {
         goose = GameObject.FindGameObjectWithTag("goose");
         kid = GameObject.FindGameObjectWithTag("kid");
-        //inventory = GameObject.FindGameObjectWithTag("inventoryList");
-        cam = Camera.main;
+        inventory = GameObject.FindGameObjectWithTag("inventoryController");
+
 
         lag = 0;
     }
@@ -31,17 +30,16 @@ public class GameManager : MonoBehaviour
             {
                 goose.SendMessage("toggle");
                 kid.SendMessage("toggle");
-
-                //cam.GetComponent<Camera2DFollow>().SendMessage("toggle");
-
+                inventory.SendMessage("gooseToKid");
+                //Debug.Log("switched players");
                 lag = 6;
             }
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                goose.SendMessage("toggle");
-                kid.SendMessage("toggle");
-                //inventory.SendMessage("toggle");
+                //goose.SendMessage("toggle");
+                //kid.SendMessage("toggle");
+                inventory.SendMessage("toggle");
                 lag = 6;
             }
 
