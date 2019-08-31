@@ -10,7 +10,7 @@ public class Player_Control : MonoBehaviour
     public float jumpTakeOffSpeed = 7;
     public float momentum;
     public float horizontalMove = 0f;
-    private float jumpForce = 280f;
+    private float jumpForce = 410f;
 
     [SerializeField] private Transform groundCheck;
 
