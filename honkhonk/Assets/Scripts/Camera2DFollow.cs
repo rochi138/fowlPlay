@@ -26,8 +26,8 @@ namespace UnityStandardAssets._2D
             m_LastTargetPosition = target.position;
             m_OffsetZ = (transform.position - target.position).z;
             transform.parent = null;
-            goose = GameObject.FindGameObjectWithTag("goose").GetComponent<Transform>();
-            kid = GameObject.FindGameObjectWithTag("kid").GetComponent<Transform>();
+            //goose = GameObject.FindGameObjectWithTag("goose").GetComponent<Transform>();
+            //kid = GameObject.FindGameObjectWithTag("kid").GetComponent<Transform>();
         }
 
 
@@ -55,31 +55,31 @@ namespace UnityStandardAssets._2D
 
             m_LastTargetPosition = target.position;
 
-            if (lag == 0)
-            {
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                {
-                    toggle();
-                    lag = 6;
-                }
-            }
-            else
-            {
-                lag -= 1;
-            }
+            //if (lag == 0)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.LeftShift))
+            //    {
+            //        toggle();
+            //        lag = 6;
+            //    }
+            //}
+            //else
+            //{
+            //    lag -= 1;
+            //}
 
         }
 
-        public void toggle()
-        {
-            if (target == goose)
-            {
-                target = kid;
-            } else
-            {
-                target = goose;
-            }
-        }
+        //public void toggle()
+        //{
+        //    if (target == goose)
+        //    {
+        //        target = kid;
+        //    } else
+        //    {
+        //        target = goose;
+        //    }
+        //}
 
     }
 

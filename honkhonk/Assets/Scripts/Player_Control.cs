@@ -10,7 +10,7 @@ public class Player_Control : MonoBehaviour
     public float jumpTakeOffSpeed = 7;
     public float momentum;
     public float horizontalMove = 0f;
-    private float jumpForce = 200f;
+    private float jumpForce = 280f;
 
     [SerializeField] private Transform groundCheck;
 
@@ -34,10 +34,11 @@ public class Player_Control : MonoBehaviour
     {
         grounded = false;
 
+        //checks if player is on a platform
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject != gameObject)
+            if (colliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
             }

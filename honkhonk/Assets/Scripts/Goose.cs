@@ -10,6 +10,7 @@ public class Goose : MonoBehaviour
     public float runSpeed = 40f;
     private float horizontalMove = 0f;
     private bool jump = false;
+    private bool headbutt = false;
 
     public bool isEnabled;
     public float upForce;                   //Upward force of the "flap".
@@ -23,6 +24,10 @@ public class Goose : MonoBehaviour
         //Moves character
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+
+        //goose headbutts
+        controller.Headbutt(headbutt);
+        headbutt = false;
     }
 
     void Update()
@@ -32,6 +37,12 @@ public class Goose : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            controller.Headbutt();
+            headbutt = 
         }
     }
 }
