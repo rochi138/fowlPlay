@@ -26,8 +26,8 @@ public class Goose : MonoBehaviour
         jump = false;
 
         //goose headbutts
-        controller.Headbutt(headbutt);
-        headbutt = false;
+        //controller.Headbutt(headbutt);
+        //headbutt = false;
     }
 
     void Update()
@@ -39,10 +39,9 @@ public class Goose : MonoBehaviour
             jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            controller.Headbutt();
-            headbutt = 
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    controller.Headbutt(headbutt);
+        //}
     }
 }

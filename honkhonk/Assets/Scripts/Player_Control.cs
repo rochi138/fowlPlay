@@ -20,6 +20,7 @@ public class Player_Control : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
     private bool grounded = true;
+    private bool headbuttTired = false;      //checks if goose has headbutted
     private Vector3 playerVelocity = Vector3.zero;
 
     // Use this for initialization
@@ -41,10 +42,16 @@ public class Player_Control : MonoBehaviour
             if (colliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
+                headbuttTired = false;
             }
         }
     }
 
+    //public void Headbutt(bool headbutt)
+    //{
+    //    Vector3 targetVelocity = new Vector2(300f, playerRigidbody.velocity.y);
+    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerVelocity, movementSmoothing);
+    //}
 
     public void Move(float move, bool jump)
     {
