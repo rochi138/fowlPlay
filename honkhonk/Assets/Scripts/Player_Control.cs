@@ -10,11 +10,16 @@ public class Player_Control : MonoBehaviour
     public float jumpTakeOffSpeed = 7;
     public float momentum;
     public float horizontalMove = 0f;
+    private float jumpForce = 200f;
 
+    [SerializeField] private Transform groundCheck;
+
+    const float groundedRadius = 0.2f;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
+    private bool grounded = true;
     private Vector3 playerVelocity = Vector3.zero;
 
     // Use this for initialization
@@ -25,44 +30,22 @@ public class Player_Control : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    //protected override void ComputeVelocity()
-    //{
-    //    animator.SetBool("Walk", false);
-    //    Vector2 move = Vector2.zero;
-    //    momentum = velocity.x;
-    //    if (Input.GetButtonDown("Jump"))
-    //    {
-    //        velocity.y = jumpTakeOffSpeed;
-    //    }
-    //    move.x = Input.GetAxis("Horizontal");
+    private void FixedUpdate()
+    {
+        grounded = false;
 
-    //    if (move.x != 0)
-    //        {
-    //        animator.SetBool("Walk", true);
-    //    }
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                grounded = true;
+            }
+        }
+    }
 
 
-    //    bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
-    //    if (flipSprite)
-    //    {
-    //        spriteRenderer.flipX = !spriteRenderer.flipX;
-    //    }
-
-    //    animator.SetBool("grounded", grounded);
-        
-
-    //    targetVelocity = move * maxSpeed;
-    //    if (grounded == false)
-    //    {
-    //        targetVelocity.x = momentum;
-    //    }
-    //    else
-    //    {
-    //        momentum = 0;
-    //    }
-    //}
-
-    public void Move(float move)
+    public void Move(float move, bool jump)
     {
         //find target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
@@ -76,6 +59,12 @@ public class Player_Control : MonoBehaviour
         {
             Flip();
         }
+
+        if (jump && grounded)
+        {
+            playerRigidbody.AddForce(new Vector2(0f, jumpForce));
+        }
+
 
     }
 
