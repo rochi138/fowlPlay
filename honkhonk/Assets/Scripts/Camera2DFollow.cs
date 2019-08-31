@@ -55,6 +55,8 @@ namespace UnityStandardAssets._2D
 
             m_LastTargetPosition = target.position;
 
+            //change lag to work for non-constant framerates
+
             //if (lag == 0)
             //{
             //    if (Input.GetKeyDown(KeyCode.LeftShift))

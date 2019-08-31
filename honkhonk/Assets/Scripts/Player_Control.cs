@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour
     private bool facingRight = true;
     private bool grounded = true;
     private bool headbuttTired = false;      //checks if goose has headbutted
-    private Vector3 playerVelocity = Vector3.zero;
+    private Vector3 playerAcceleration = Vector3.zero;
 
     // Use this for initialization
     void Awake()
@@ -36,9 +36,10 @@ public class Player_Control : MonoBehaviour
         grounded = false;
 
         //checks if player is on a platform
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);      //add layermask check
         for (int i = 0; i < colliders.Length; i++)
         {
+            //checks for ground (non-goose) collider
             if (colliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
@@ -50,14 +51,16 @@ public class Player_Control : MonoBehaviour
     //public void Headbutt(bool headbutt)
     //{
     //    Vector3 targetVelocity = new Vector2(300f, playerRigidbody.velocity.y);
-    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerVelocity, movementSmoothing);
+    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
     //}
 
     public void Move(float move, bool jump)
     {
         //find target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
-        playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerVelocity, movementSmoothing);
+
+        //smooths transition from one velocity to next
+        playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
 
         if (move > 0 && !facingRight)
         {
