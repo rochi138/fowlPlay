@@ -2,57 +2,90 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Control : PhysicsObject
+public class Player_Control : MonoBehaviour
 {
+    [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;	// How much to smooth out the movement
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
     public float momentum;
+    public float horizontalMove = 0f;
+    private float jumpForce = 410f;
 
+    [SerializeField] private Transform groundCheck;
+
+    const float groundedRadius = 0.2f;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Rigidbody2D playerRigidbody;
+    private bool facingRight = true;
+    private bool grounded = true;
+    private bool headbuttTired = false;      //checks if goose has headbutted
+    private Vector3 playerAcceleration = Vector3.zero;
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    protected override void ComputeVelocity()
+    private void FixedUpdate()
     {
-        animator.SetBool("Walk", false);
-        Vector2 move = Vector2.zero;
-        momentum = velocity.x;
-        if (Input.GetButtonDown("Jump"))
-        {
-            velocity.y = jumpTakeOffSpeed;
-        }
-        move.x = Input.GetAxis("Horizontal");
+        grounded = false;
 
-        if (move.x != 0)
+        //checks if player is on a platform
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);      //add layermask check
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            //checks for ground (non-goose) collider
+            if (colliders[i].gameObject != this.gameObject)
             {
-            animator.SetBool("Walk", true);
+                grounded = true;
+                headbuttTired = false;
+            }
         }
+    }
 
+    //public void Headbutt(bool headbutt)
+    //{
+    //    Vector3 targetVelocity = new Vector2(300f, playerRigidbody.velocity.y);
+    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
+    //}
 
-        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
-        if (flipSprite)
+    public void Move(float move, bool jump)
+    {
+        //find target velocity
+        Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
+
+        //smooths transition from one velocity to next
+        playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
+
+        if (move > 0 && !facingRight)
         {
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            Flip();
+        }
+        else if (move < 0 && facingRight)
+        {
+            Flip();
         }
 
-        animator.SetBool("grounded", grounded);
-        
+        if (jump && grounded)
+        {
+            playerRigidbody.AddForce(new Vector2(0f, jumpForce));
+        }
 
-        targetVelocity = move * maxSpeed;
-        if (grounded == false)
-        {
-            targetVelocity.x = momentum;
-        }
-        else
-        {
-            momentum = 0;
-        }
+
+    }
+
+    public void Flip()
+    {
+        // Change player orientation
+        facingRight = !facingRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
