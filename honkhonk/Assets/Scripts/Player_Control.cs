@@ -43,16 +43,29 @@ public class Player_Control : MonoBehaviour
             if (colliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
+                //can't headbutt twice in air, must fall to ground first
                 headbuttTired = false;
             }
         }
     }
 
-    //public void Headbutt(bool headbutt)
-    //{
-    //    Vector3 targetVelocity = new Vector2(300f, playerRigidbody.velocity.y);
-    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
-    //}
+    public void Headbutt()
+    {
+        if (!headbuttTired)
+        {
+            Vector3 targetVelocity;
+            if (facingRight)
+            {
+                targetVelocity = new Vector2(80f, playerRigidbody.velocity.y);
+            }
+            else
+            {
+                targetVelocity = new Vector2(-80f, playerRigidbody.velocity.y);
+            }
+            playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
+            headbuttTired = true;
+        }
+    }
 
     public void Move(float move, bool jump)
     {
@@ -75,8 +88,6 @@ public class Player_Control : MonoBehaviour
         {
             playerRigidbody.AddForce(new Vector2(0f, jumpForce));
         }
-
-
     }
 
     public void Flip()
