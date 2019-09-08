@@ -20,6 +20,7 @@ public class Player_Control : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
     private bool grounded = true;
+    private bool headbutt = false;
     private bool headbuttTired = false;      //checks if goose has headbutted
     private Vector3 playerAcceleration = Vector3.zero;
 
@@ -48,11 +49,12 @@ public class Player_Control : MonoBehaviour
             }
         }
     }
-
+    //destroys breakable objects
     public void Headbutt()
     {
         if (!headbuttTired)
         {
+            headbutt = true;
             Vector3 targetVelocity;
             if (facingRight)
             {
@@ -65,6 +67,16 @@ public class Player_Control : MonoBehaviour
             playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
             headbuttTired = true;
         }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        //make asynch later; else goose will still break things when falling thru air :))))
+        if (headbutt == true && other.gameObject.tag == "Breakable")
+        {
+            Debug.Log("collision");
+            Destroy(other.gameObject);
+        }
+        headbutt = false;
     }
 
     public void Move(float move, bool jump)
