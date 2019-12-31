@@ -11,23 +11,15 @@ public class EmptyPodTrigger : MonoBehaviour
         GameObject strikingBird = other.gameObject;
         if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true)
         {
-
+            Debug.Log("Collided with " + name);
         }
 
         //ContactPoint2D = ;
 
         //gother.contacts 
         
-
-
-        Debug.Log("Collided with " + name);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
