@@ -10,7 +10,8 @@ public class EmptyPodTrigger : MonoBehaviour
     {
         var objectName = other.gameObject.name;
         GameObject strikingBird = other.gameObject;
-        Debug.Log("other object is " + objectName);
+
+        //check if player is headbutting right side of pod
         if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true && CheckCollidingSide(other) == true)
         {
             Debug.Log("Collided with " + objectName);
