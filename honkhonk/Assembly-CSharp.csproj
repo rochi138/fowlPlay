@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Goose.cs" />
     <Compile Include="Assets\Scripts\InventoryCOntroller.cs" />
     <Compile Include="Assets\Scripts\inventoryItem.cs" />
+    <Compile Include="Assets\Scripts\KidPodTrigger.cs" />
     <Compile Include="Assets\Scripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\LvlChangerScript.cs" />
     <Compile Include="Assets\Scripts\PhysicsObject.cs" />
