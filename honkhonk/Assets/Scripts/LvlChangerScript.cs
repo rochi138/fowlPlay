@@ -1,17 +1,30 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LvlChangerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
 
     public Animator animator;
 
-    void Start()
+    public void FadeToLevel()
     {
-        
+        animator.SetTrigger("FadeOut");
+    }
+    public void OnFadeComplete()
+    {
+
     }
 
     // Update is called once per frame
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Get Animator attached to EmptyPod
+
+    }
+
     void Update()
     {
         

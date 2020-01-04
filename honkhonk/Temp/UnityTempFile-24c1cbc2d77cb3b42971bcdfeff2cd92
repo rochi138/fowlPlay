@@ -1,12 +1,15 @@
 /target:library
 /nowarn:0169
-/out:Temp/Assembly-CSharp-Editor.dll
+/out:Temp/Unity.VSCode.Editor.dll
 /debug:portable
 /optimize-
 /nostdlib+
 /preferreduilang:en-US
 /langversion:latest
-/reference:Library/ScriptAssemblies/Assembly-CSharp.dll
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Library/ScriptAssemblies/UnityEditor.TestRunner.dll
+/reference:Library/ScriptAssemblies/UnityEngine.TestRunner.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -68,17 +71,6 @@
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEditor.dll"
-/reference:Library/ScriptAssemblies/UnityEditor.TestRunner.dll
-/reference:Library/ScriptAssemblies/UnityEngine.TestRunner.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
-/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
-/reference:Library/ScriptAssemblies/Unity.Timeline.dll
-/reference:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
-/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
-/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 /reference:"C:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
@@ -297,4 +289,7 @@
 /define:ENABLE_TIMELINE
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
-Assets\LightRays2D\Editor\LightRays2DEditor.cs
+C:\Users\sabri\Documents\Projects\Fowl_Play\fowlPlay\honkhonk\Library\PackageCache\com.unity.ide.vscode@1.0.7\Editor\ProjectGeneration.cs
+C:\Users\sabri\Documents\Projects\Fowl_Play\fowlPlay\honkhonk\Library\PackageCache\com.unity.ide.vscode@1.0.7\Editor\Utility.cs
+C:\Users\sabri\Documents\Projects\Fowl_Play\fowlPlay\honkhonk\Library\PackageCache\com.unity.ide.vscode@1.0.7\Editor\VSCodeDiscovery.cs
+C:\Users\sabri\Documents\Projects\Fowl_Play\fowlPlay\honkhonk\Library\PackageCache\com.unity.ide.vscode@1.0.7\Editor\VSCodeScriptEditor.cs
