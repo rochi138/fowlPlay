@@ -111,4 +111,8 @@ public class Player_Control : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
     }
+    public bool getHeadbutt()
+    {
+        return headbutt;
+    }
 }

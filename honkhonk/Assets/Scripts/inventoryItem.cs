@@ -6,7 +6,6 @@ public class inventoryItem : MonoBehaviour {
 
     public string[] send = new string[2];
     public bool isTouched;
-    public GameObject RinventoryController;
     public GameObject inventoryController;
 
     void Start () {
