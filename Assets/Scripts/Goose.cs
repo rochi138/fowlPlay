@@ -34,18 +34,17 @@ public class Goose : MonoBehaviour
         
     }
 
-    void Update()
-    {
+    void Update() {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+    }
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-        }
+    void Awake() {
+        PlayerEvents.OnJumpDown += delegate { jump = true; };
+        PlayerEvents.OnXDown += delegate { headbutt = true; };
+    }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            headbutt = true;
-        }
+    void OnDestroy() {
+        PlayerEvents.OnJumpDown -= delegate { jump = true; };
+        PlayerEvents.OnXDown -= delegate { headbutt = true; };
     }
 }
