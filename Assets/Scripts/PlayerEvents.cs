@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class PlayerEvents : MonoBehaviour {
 
+    public static UnityAction OnEDown = null;
     public static UnityAction OnXDown = null;
     public static UnityAction OnJumpDown = null;
 
@@ -16,6 +17,7 @@ public class PlayerEvents : MonoBehaviour {
         // Down = GetKeyDown
         // Up = GetKeyUp
 
+        if (Input.GetKeyDown(KeyCode.E) && OnEDown != null ) OnEDown();
         if (Input.GetKeyDown(KeyCode.X) && OnXDown != null ) OnXDown();
         if (Input.GetKeyDown("space") && OnJumpDown != null ) OnJumpDown();
     }

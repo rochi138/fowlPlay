@@ -8,20 +8,23 @@ public class inventoryItem : MonoBehaviour {
     public bool isTouched;
     public GameObject inventoryController;
 
+    void Awake() {
+        PlayerEvents.OnEDown += Obtain;
+    }
+
+    void OnDestroy() {
+        PlayerEvents.OnEDown -= Obtain;
+    }
+
     void Start () {
         isTouched = false;
         inventoryController = GameObject.FindGameObjectWithTag("inventoryController");
         send[0] = this.name;
 	}
 	
-	void FixedUpdate () {
-		
-        if (Input.GetKey("e"))
-        {
-            if (isTouched)
-            {
-                inventoryController.SendMessage("obtain", this.send);
-            }
+	void Obtain () {
+        if (isTouched) {
+            inventoryController.SendMessage("obtain", this.send);
         }
 	}
 
