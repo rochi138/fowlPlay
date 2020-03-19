@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6530216155394664615}
   - component: {fileID: 6530216155394664613}
   m_Layer: 0
-  m_Name: KidPodPuzzle
+  m_Name: PodAdrianPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
