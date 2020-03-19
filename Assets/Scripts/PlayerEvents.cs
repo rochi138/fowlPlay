@@ -19,6 +19,6 @@ public class PlayerEvents : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E) && OnEDown != null ) OnEDown();
         if (Input.GetKeyDown(KeyCode.X) && OnXDown != null ) OnXDown();
-        if (Input.GetKeyDown("space") && OnJumpDown != null ) OnJumpDown();
+        if (Input.GetKeyDown(KeyCode.Space) && OnJumpDown != null ) OnJumpDown();
     }
 }
