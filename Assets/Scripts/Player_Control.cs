@@ -9,6 +9,7 @@ public class Player_Control : MonoBehaviour
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
     public float momentum;
+    public LayerMask groundLayers = 0;
     public float horizontalMove = 0f;
     private float jumpForce = 410f;
 
@@ -19,7 +20,7 @@ public class Player_Control : MonoBehaviour
     private Animator animator;
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
-    private bool grounded = true;
+    public bool grounded = false;
     private bool headbutt = false;
     private bool headbuttTired = false;      //checks if goose has headbutted
     private Vector3 playerAcceleration = Vector3.zero;
@@ -34,21 +35,11 @@ public class Player_Control : MonoBehaviour
 
     private void FixedUpdate()
     {
-        grounded = false;
-
         //checks if player is on a platform
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius);      //add layermask check
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            //checks for ground (non-goose) collider
-            if (colliders[i].gameObject != this.gameObject)
-            {
-                grounded = true;
-                //can't headbutt twice in air, must fall to ground first
-                headbuttTired = false;
-            }
-        }
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers);      //add layermask check
+        headbuttTired = !grounded;
     }
+    
     //destroys breakable objects
     public void Headbutt()
     {

@@ -5844,7 +5844,7 @@ GameObject:
   - component: {fileID: 1565206306469170030}
   - component: {fileID: 1565206306469170031}
   - component: {fileID: 1565206306469170028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solids
   m_TagString: Untagged
   m_Icon: {fileID: 0}
