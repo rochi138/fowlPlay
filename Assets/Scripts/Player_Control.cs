@@ -18,7 +18,9 @@ public class Player_Control : MonoBehaviour
     const float groundedRadius = 0.2f;
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
-    public bool grounded = false;
+    public bool grounded{ 
+        get { return Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers); } 
+    }
     private bool headbutt = false;
     private bool headbuttTired = false;      //checks if goose has headbutted
     private Vector3 playerAcceleration = Vector3.zero;
@@ -28,25 +30,15 @@ public class Player_Control : MonoBehaviour
     }
 
     void Update() {
-        //checks if player is on a platform
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers);      //add layermask check
         headbuttTired = !grounded;
     }
 
     //destroys breakable objects
     public void Headbutt() {
-        if (!headbuttTired)
-        {
+        if (!headbuttTired) {
             headbutt = true;
             Vector3 targetVelocity;
-            if (facingRight)
-            {
-                targetVelocity = new Vector2(80f, playerRigidbody.velocity.y);
-            }
-            else
-            {
-                targetVelocity = new Vector2(-80f, playerRigidbody.velocity.y);
-            }
+            targetVelocity = new Vector2( facingRight ? 80f : -80f , playerRigidbody.velocity.y);
             playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
             headbuttTired = true;
         }

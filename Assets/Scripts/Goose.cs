@@ -11,10 +11,7 @@ public class Goose : MonoBehaviour
     private float horizontalMove = 0f;
     private bool jump = false;
     private bool headbutt = false;
-
-    public bool isEnabled;
     public float upForce;                   //Upward force of the "flap".
-    public bool isGrounded;
     public BoxCollider2D platformCollider;
     public Collider2D gooseCollider;
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
