@@ -3,10 +3,7 @@ using System.Collections;
 
 public class Goose : MonoBehaviour
 {
-    [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;	// How much to smooth out the movement
-
     public Player_Control controller;
-
     public float runSpeed = 40f;
     private float horizontalMove = 0f;
     private bool jump = false;
