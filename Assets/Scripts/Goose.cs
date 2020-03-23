@@ -19,19 +19,16 @@ public class Goose : MonoBehaviour
     public Collider2D gooseCollider;
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         //Moves character
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
 
         //goose headbutts
-        if (headbutt == true)
-        {
+        if (headbutt == true) {
             controller.Headbutt();
             headbutt = false;
         }
-        
     }
 
     void Update() {

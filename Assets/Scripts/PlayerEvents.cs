@@ -9,9 +9,8 @@ public class PlayerEvents : MonoBehaviour {
 
     void Update() {
         // check for active input
-        if (!Input.anyKey) {
+        if (!Input.anyKey)
             return;
-        }
 
         // Press = GetKey
         // Down = GetKeyDown

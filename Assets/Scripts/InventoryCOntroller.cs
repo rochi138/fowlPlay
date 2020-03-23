@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public struct item
-{
+public struct item {
     public string name;
     public Image imgrep;
     public RectTransform imgTran;
     public string holder;
 }
 
-public struct coordinates
-{
+public struct coordinates {
     public int x;
     public int y;
 }
@@ -57,8 +55,7 @@ public class inventoryController : MonoBehaviour {
 	
 	void FixedUpdate () {
         //Debug.Log(inventoryListFull[0].holder);
-        if (isKid)
-        {
+        if (isKid) {
             //for (int i = 0; i < inventoryListFull.Length; i++)
             //{
             //if (inventoryListKid[0].name != null)
@@ -68,9 +65,7 @@ public class inventoryController : MonoBehaviour {
             //    } else { inventoryListFull[0].imgrep.enabled = false; }
             //}
             word = "kid";
-        }
-        else
-        {
+        } else {
             //if (inventoryListGoose.name != null)
             //{
             //    Debug.Log(inventoryListGoose.name);
@@ -82,71 +77,52 @@ public class inventoryController : MonoBehaviour {
 
         //    for (int i = 0; i < inventoryListFull.Length; i++)
         //{
-        if (inventoryListFull[0].holder == word)
-            {
-                inventoryListFull[0].imgrep.enabled = true;
-            }
-            else 
-            {
-                inventoryListFull[0].imgrep.enabled = false;
-            }
+        if (inventoryListFull[0].holder == word) {
+            inventoryListFull[0].imgrep.enabled = true;
+        } else {
+            inventoryListFull[0].imgrep.enabled = false;
+        }
         //}
 	}
 
-    public void obtain (string[] data)
-    {
-        if (data[1] == "goose")
-        {
+    public void obtain (string[] data) {
+        if (data[1] == "goose") {
             //checks to see if goose is empty
-            if (inventoryListGoose.name == null)
-            {
-                for (int i = 0; i < inventoryListFull.Length; i++)
-                {
+            if (inventoryListGoose.name == null) {
+                for (int i = 0; i < inventoryListFull.Length; i++) {
                     //check if item
-                    if (inventoryListFull[i].name == data[0])
-                    {
+                    if (inventoryListFull[i].name == data[0]) {
                         inventoryListGoose = inventoryListFull[i];
                         inventoryListFull[i].holder = "goose";
                         //Debug.Log("goose obtained");
                     }
                 }
             }
-        }
-        else
-        {
-            for (int i = 0; i < inventoryListFull.Length; i++)
-            {
+        } else {
+            for (int i = 0; i < inventoryListFull.Length; i++) {
                 //check if item
-                if (inventoryListFull[i].name == data[0])
-                {
+                if (inventoryListFull[i].name == data[0]) {
                     bool added = false;
                     //inserts item in empty slot of kid's inventory
-                    for (int ii = 0; ii < inventoryListKid.Length; ii++)
-                    {
-                        if (inventoryListKid[ii].name == null && !added)
-                        {
+                    for (int ii = 0; ii < inventoryListKid.Length; ii++) {
+                        if (inventoryListKid[ii].name == null && !added) {
                             inventoryListKid[ii] = inventoryListFull[i];
                             inventoryListFull[i].holder = "kid";
                             added = true;
                         }
                     }
-
                 }
             }
-
         }
-
     }
 
-    public void toggle()
-    {
+    public void toggle() {
         //Debug.Log("Bag " + isEnabled);
         //isEnabled = !isEnabled;
         //inventoryBase.enabled = isEnabled;
     }
 
-    public void gooseToKid()
-    {
+    public void gooseToKid() {
         isKid = !isKid;
         //Debug.Log(isKid);
         //if (inventoryListGoose.name != null)

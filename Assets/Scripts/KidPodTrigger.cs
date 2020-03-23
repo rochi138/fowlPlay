@@ -24,15 +24,8 @@ public class KidPodTrigger : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GameObject.Find("LvlChanger").GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -16,8 +16,6 @@ public class Player_Control : MonoBehaviour
     [SerializeField] private Transform groundCheck;
 
     const float groundedRadius = 0.2f;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
     public bool grounded = false;
@@ -25,24 +23,18 @@ public class Player_Control : MonoBehaviour
     private bool headbuttTired = false;      //checks if goose has headbutted
     private Vector3 playerAcceleration = Vector3.zero;
 
-    // Use this for initialization
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+    void Awake() {
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         //checks if player is on a platform
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers);      //add layermask check
         headbuttTired = !grounded;
     }
-    
+
     //destroys breakable objects
-    public void Headbutt()
-    {
+    public void Headbutt() {
         if (!headbuttTired)
         {
             headbutt = true;
@@ -59,42 +51,34 @@ public class Player_Control : MonoBehaviour
             headbuttTired = true;
         }
     }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
+    private void OnCollisionEnter2D(Collision2D other) {
         //make asynch later; else goose will still break things when falling thru air :))))
-        if (headbutt == true && other.gameObject.tag == "Breakable")
-        {
+        if (headbutt == true && other.gameObject.tag == "Breakable") {
             Debug.Log("collision");
             Destroy(other.gameObject);
         }
         headbutt = false;
     }
 
-    public void Move(float move, bool jump)
-    {
+    public void Move(float move, bool jump) {
         //find target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
 
         //smooths transition from one velocity to next
         playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
 
-        if (move > 0 && !facingRight)
-        {
+        if (move > 0 && !facingRight) {
             Flip();
-        }
-        else if (move < 0 && facingRight)
-        {
+        } else if (move < 0 && facingRight) {
             Flip();
         }
 
-        if (jump && grounded)
-        {
+        if (jump && grounded) {
             playerRigidbody.AddForce(new Vector2(0f, jumpForce));
         }
     }
 
-    public void Flip()
-    {
+    public void Flip() {
         // Change player orientation
         facingRight = !facingRight;
 
@@ -102,8 +86,7 @@ public class Player_Control : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
     }
-    public bool getHeadbutt()
-    {
+    public bool getHeadbutt() {
         return headbutt;
     }
 }

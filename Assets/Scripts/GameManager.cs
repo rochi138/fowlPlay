@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 
     public GameObject goose;
     public GameObject kid;
     public GameObject inventory;
     public Goose gooseScript;
 
-    void Start()
-    {
+    void Start() {
         goose = GameObject.FindGameObjectWithTag("goose");
         kid = GameObject.FindGameObjectWithTag("kid");
         inventory = GameObject.FindGameObjectWithTag("inventoryController");
