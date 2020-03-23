@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EmptyPodTrigger : MonoBehaviour {
     public Animator animator;
+    
     private void OnTriggerEnter2D(Collider2D other) {
         var objectName = other.gameObject.name;
         GameObject strikingBird = other.gameObject;

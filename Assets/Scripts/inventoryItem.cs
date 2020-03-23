@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryItem : MonoBehaviour {
 
     public string[] send = new string[2];
-    public bool isTouched;
+    public bool isTouched = false;
     public GameObject inventoryController;
 
     void Awake() {
@@ -17,7 +17,6 @@ public class InventoryItem : MonoBehaviour {
     }
 
     void Start () {
-        isTouched = false;
         inventoryController = GameObject.FindGameObjectWithTag("inventoryController");
         send[0] = this.name;
 	}

@@ -17,8 +17,8 @@ public struct coordinates {
 
 public class inventoryController : MonoBehaviour {
 
-    public string word;
-    public bool isEnabled;
+    public string word = null;
+    public bool isEnabled = false;
     public bool isKid;
     public string[] receive = new string[2];
     public GameObject canvasObj;
@@ -37,7 +37,6 @@ public class inventoryController : MonoBehaviour {
     void Start () {
         canvasObj = GameObject.FindGameObjectWithTag("canvas");
         inventoryBase = GameObject.Find("InventoryBase").GetComponent<Image>();
-        isEnabled = false;
 
         inventoryListFull[0].name = "keyCard";
         inventoryListFull[0].imgrep = GameObject.Find("invKeyCard").GetComponent<Image>();
@@ -49,7 +48,6 @@ public class inventoryController : MonoBehaviour {
         locations[0].y = 32;
 
         toggle();
-        word = null;
 
     }
 	
