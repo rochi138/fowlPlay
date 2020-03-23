@@ -15,11 +15,10 @@ public class Player_Control : MonoBehaviour
 
     [SerializeField] private Transform groundCheck;
 
-    const float groundedRadius = 0.2f;
     private Rigidbody2D playerRigidbody;
     private bool facingRight = true;
     public bool grounded{ 
-        get { return Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers); } 
+        get { return Physics2D.OverlapCircle(groundCheck.position, GameConstants.groundedRadius, groundLayers); } 
     }
     private bool headbutt = false;
     private bool headbuttTired = false;      //checks if goose has headbutted
