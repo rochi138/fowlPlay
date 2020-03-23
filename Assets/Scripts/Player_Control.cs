@@ -27,7 +27,7 @@ public class Player_Control : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate() {
+    void Update() {
         //checks if player is on a platform
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayers);      //add layermask check
         headbuttTired = !grounded;

@@ -19,22 +19,6 @@ public class Goose : MonoBehaviour
     public Collider2D gooseCollider;
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
-    private void FixedUpdate() {
-        //Moves character
-        controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
-        jump = false;
-
-        //goose headbutts
-        if (headbutt == true) {
-            controller.Headbutt();
-            headbutt = false;
-        }
-    }
-
-    void Update() {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-    }
-
     void Awake() {
         PlayerEvents.OnJumpDown += delegate { jump = true; };
         PlayerEvents.OnXDown += delegate { headbutt = true; };
@@ -43,5 +27,19 @@ public class Goose : MonoBehaviour
     void OnDestroy() {
         PlayerEvents.OnJumpDown -= delegate { jump = true; };
         PlayerEvents.OnXDown -= delegate { headbutt = true; };
+    }
+    
+    void Update() {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        //Moves character
+        controller.Move(horizontalMove * Time.deltaTime, jump);
+        jump = false;
+
+        //goose headbutts
+        if (headbutt == true) {
+            controller.Headbutt();
+            headbutt = false;
+        }
     }
 }

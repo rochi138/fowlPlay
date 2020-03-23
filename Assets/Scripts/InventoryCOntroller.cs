@@ -51,7 +51,7 @@ public class inventoryController : MonoBehaviour {
 
     }
 	
-	void FixedUpdate () {
+	void Update () {
         //Debug.Log(inventoryListFull[0].holder);
         if (isKid) {
             //for (int i = 0; i < inventoryListFull.Length; i++)
