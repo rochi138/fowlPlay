@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] PlayerEvents PlayerEvents;
     [SerializeField] AudioManager AudioManager;
     [SerializeField] InventoryManager InventoryManager;
-    [SerializeField] SceneManager SceneManager;
+    // [SerializeField] SceneManager SceneManager;
     [SerializeField] StateManager StateManager;
     void Awake() {
         if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
