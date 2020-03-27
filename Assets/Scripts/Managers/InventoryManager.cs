@@ -15,7 +15,7 @@ public struct coordinates {
     public int y;
 }
 
-public class inventoryController : MonoBehaviour {
+public class InventoryManager : MonoBehaviour {
 
     public string word = null;
     public bool isEnabled = false;
