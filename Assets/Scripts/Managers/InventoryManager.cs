@@ -16,7 +16,7 @@ public struct coordinates {
 }
 
 public class InventoryManager : MonoBehaviour {
-
+    public static InventoryManager m_Instance = null;
     public string word = null;
     public bool isEnabled = false;
     public bool isKid;
@@ -33,6 +33,17 @@ public class InventoryManager : MonoBehaviour {
     private coordinates[] locations = new coordinates[5];
 
     public string[] rdata = new string[2];
+    public static InventoryManager GetInstance() {
+        return m_Instance;
+    }
+
+    void Awake() {
+        if (m_Instance == null) {
+            m_Instance = this;
+        } else if (m_Instance != this) {
+            Destroy(gameObject);
+        }
+    }
 
     void Start () {
         canvasObj = GameObject.FindGameObjectWithTag("canvas");
