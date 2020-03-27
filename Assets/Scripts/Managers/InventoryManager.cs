@@ -16,7 +16,7 @@ public struct coordinates {
 }
 
 public class InventoryManager : MonoBehaviour {
-    public static InventoryManager m_Instance = null;
+    public static InventoryManager Instance { get; private set; }
     public string word = null;
     public bool isEnabled = false;
     public bool isKid;
@@ -33,16 +33,8 @@ public class InventoryManager : MonoBehaviour {
     private coordinates[] locations = new coordinates[5];
 
     public string[] rdata = new string[2];
-    public static InventoryManager GetInstance() {
-        return m_Instance;
-    }
-
     void Awake() {
-        if (m_Instance == null) {
-            m_Instance = this;
-        } else if (m_Instance != this) {
-            Destroy(gameObject);
-        }
+        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
     void Start () {
@@ -86,11 +78,11 @@ public class InventoryManager : MonoBehaviour {
 
         //    for (int i = 0; i < inventoryListFull.Length; i++)
         //{
-        if (inventoryListFull[0].holder == word) {
-            inventoryListFull[0].imgrep.enabled = true;
-        } else {
-            inventoryListFull[0].imgrep.enabled = false;
-        }
+        // if (inventoryListFull[0].holder == word) {
+        //     inventoryListFull[0].imgrep.enabled = true;
+        // } else {
+        //     inventoryListFull[0].imgrep.enabled = false;
+        // }
         //}
 	}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public static GameManager m_Instance = null;
+    public static GameManager Instance { get; private set; }
     public GameObject goose;
     public GameObject kid;
     public Goose gooseScript;
@@ -13,17 +13,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] InventoryManager InventoryManager;
     [SerializeField] SceneManager SceneManager;
     [SerializeField] StateManager StateManager;
-
-    public static GameManager GetInstance() {
-        return m_Instance;
-    }
-
     void Awake() {
-        if (m_Instance == null) {
-            m_Instance = this;
-        } else if (m_Instance != this) {
-            Destroy(gameObject);
-        }
+        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
     void Start() {
