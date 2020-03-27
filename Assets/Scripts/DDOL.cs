@@ -3,6 +3,6 @@
 public class DDOL : MonoBehaviour {
     public void Awake() {
         DontDestroyOnLoad( gameObject );
-        SceneController.LoadNextScene();
+        GameManager.SceneController.LoadNextScene();
     }
 }
