@@ -8,7 +8,7 @@ static class GM {
     public static AudioManager AudioManager;
     public static InventoryManager InventoryManager;
     public static PlayerEvents PlayerEvents;
-    public static SceneController SceneController;
+    public static SceneController SceneManager;
     public static StateManager StateManager;
 
     static GM() {
@@ -17,12 +17,12 @@ static class GM {
         AudioManager = (AudioManager)SafeComponent( g, "AudioManager" );
         InventoryManager = (InventoryManager)SafeComponent( g, "InventoryManager" );
         PlayerEvents = (PlayerEvents)SafeComponent( g, "PlayerEvents" );
-        SceneController = (SceneController)SafeComponent( g, "SceneController" );
+        SceneManager = (SceneController)SafeComponent( g, "SceneController" );
         StateManager = (StateManager)SafeComponent( g, "StateManager" );
 
  #if UNITY_EDITOR
         try {
-            SceneManager.LoadScene( EditorPrefs.GetString( "SceneAutoLoader.PreviousScene" ) );
+            UnityEngine.SceneManagement.SceneManager.LoadScene( EditorPrefs.GetString( "SceneAutoLoader.PreviousScene" ) );
         } catch {
             Debug.LogError( string.Format( "error: Could not load active scene after preload" ));
         }
