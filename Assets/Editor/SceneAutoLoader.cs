@@ -5,17 +5,13 @@ using UnityEditor.SceneManagement;
 
 [InitializeOnLoad]
 static class SceneAutoLoader
-{
-	// Static constructor binds a playmode-changed callback.
-	// [InitializeOnLoad] above makes sure this gets executed.
+{ 
 	static SceneAutoLoader() {
 		EditorApplication.playModeStateChanged += OnPlayModeChanged;
 	}
- 
-	// Play mode change callback handles the scene load/reload.
+
 	private static void OnPlayModeChanged(PlayModeStateChange state) {
 		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode) {
-			// User pressed play -- autoload master scene.
 			PreviousScene = EditorSceneManager.GetActiveScene().name;
 			if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) {
 				try {
@@ -25,14 +21,11 @@ static class SceneAutoLoader
 					EditorApplication.isPlaying = false;
 				}
 			} else {
-				// User cancelled the save operation -- cancel play as well.
 				EditorApplication.isPlaying = false;
 			}
 		}
  
-		// isPlaying check required because cannot OpenScene while playing
 		if (!EditorApplication.isPlaying && !EditorApplication.isPlayingOrWillChangePlaymode) {
-			// User pressed stop -- reload previous scene.
 			try {
 				EditorSceneManager.OpenScene( "Assets/Scenes/" + PreviousScene + ".unity" );
 			} catch {

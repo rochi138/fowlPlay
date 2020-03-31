@@ -20,9 +20,7 @@ static class GM {
         }
  #endif
     }
-
-    // when GM wakes up, it checks everything is in place
-    // it uses these trivial routines to do so
+    
     private static GameObject safeFind(string s) {
         GameObject g = GameObject.Find(s);
         if (g == null) 
