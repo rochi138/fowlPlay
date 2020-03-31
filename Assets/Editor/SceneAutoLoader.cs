@@ -10,6 +10,14 @@ static class SceneAutoLoader
 		EditorApplication.playModeStateChanged += OnPlayModeChanged;
 	}
 
+	private static string MasterScene = "_preload";
+ 
+	private static string PreviousScene
+	{
+		get { return EditorPrefs.GetString("SceneAutoLoader.PreviousScene", EditorSceneManager.GetActiveScene().name); }
+		set { EditorPrefs.SetString("SceneAutoLoader.PreviousScene", value); }
+	}
+
 	private static void OnPlayModeChanged(PlayModeStateChange state) {
 		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode) {
 			PreviousScene = EditorSceneManager.GetActiveScene().name;
@@ -32,14 +40,6 @@ static class SceneAutoLoader
 				Debug.LogError(string.Format("error: scene not found: {0}", PreviousScene));
 			}
 		}
-	}
- 
-	private static string MasterScene = "_preload";
- 
-	private static string PreviousScene
-	{
-		get { return EditorPrefs.GetString("SceneAutoLoader.PreviousScene", EditorSceneManager.GetActiveScene().name); }
-		set { EditorPrefs.SetString("SceneAutoLoader.PreviousScene", value); }
 	}
 }
 #endif
