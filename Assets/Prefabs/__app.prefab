@@ -140,8 +140,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4138085700497027305}
   - component: {fileID: 4138085700497027304}
-  - component: {fileID: -2831113879379590244}
   - component: {fileID: 363773897507555320}
+  - component: {fileID: 1988574295494713158}
   m_Layer: 0
   m_Name: __app
   m_TagString: Untagged
@@ -176,18 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b3ce752939444bb00531ab02da89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2831113879379590244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4138085700497027308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf5850378b67f843bf3afcc921d1065, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &363773897507555320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +186,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0040058c3675974fa4f3f2cf94c00a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1988574295494713158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138085700497027308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce385e88d1b1d6a41a581480fb7f500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4138085701662431132
@@ -253,11 +253,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4138085700497027305}
     m_Modifications:
-    - target: {fileID: 6265200748017769627, guid: 0ed1f36eb5b1cd24c8ff45ccd8ba2c53,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
     - target: {fileID: 15369678759283217, guid: 0ed1f36eb5b1cd24c8ff45ccd8ba2c53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,6 +307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265200748017769627, guid: 0ed1f36eb5b1cd24c8ff45ccd8ba2c53,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1f36eb5b1cd24c8ff45ccd8ba2c53, type: 3}

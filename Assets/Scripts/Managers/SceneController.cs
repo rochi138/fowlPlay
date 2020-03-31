@@ -1,11 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController {
-    public static SceneController Instance = null;
+public class SceneController : MonoBehaviour {
+    // void Awake() {
+    //     DontDestroyOnLoad(gameObject);
+    // }
+
     void Awake() {
-        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        GM.Nothing();
     }
+
     public void LoadNextScene() {
         // SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1 );
         SceneManager.LoadScene("Tutorial");
