@@ -16,13 +16,13 @@ public class Goose : MonoBehaviour
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
     void Awake() {
-        PlayerEvents.OnJumpDown += delegate { jump = true; };
-        PlayerEvents.OnXDown += delegate { headbutt = true; };
+        GM.PlayerEvents.OnJumpDown += delegate { jump = true; };
+        GM.PlayerEvents.OnXDown += delegate { headbutt = true; };
     }
 
     void OnDestroy() {
-        PlayerEvents.OnJumpDown -= delegate { jump = true; };
-        PlayerEvents.OnXDown -= delegate { headbutt = true; };
+        GM.PlayerEvents.OnJumpDown -= delegate { jump = true; };
+        GM.PlayerEvents.OnXDown -= delegate { headbutt = true; };
     }
     
     void Update() {

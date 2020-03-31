@@ -4,16 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
-    // void Awake() {
-    //     DontDestroyOnLoad(gameObject);
-    // }
-
     void Awake() {
         GM.Nothing();
     }
 
     public void LoadNextScene() {
-        // SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1 );
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1 );
     }
 }

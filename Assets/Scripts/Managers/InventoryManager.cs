@@ -15,8 +15,7 @@ public struct coordinates {
     public int y;
 }
 
-public class InventoryManager {
-    public static InventoryManager Instance;
+public class InventoryManager : MonoBehaviour {
     public string word = null;
     public bool isEnabled = false;
     public bool isKid;
@@ -33,10 +32,6 @@ public class InventoryManager {
     private coordinates[] locations = new coordinates[5];
 
     public string[] rdata = new string[2];
-
-    void Awake() {
-        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
-    }
 
     void Start () {
         canvasObj = GameObject.FindGameObjectWithTag("canvas");

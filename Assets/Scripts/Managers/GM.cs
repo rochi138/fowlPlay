@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 #endif
 
 static class GM {
-   public static SceneController SceneController;
+    public static AudioManager AudioManager;
+    public static InventoryManager InventoryManager;
+    public static PlayerEvents PlayerEvents;
+    public static SceneController SceneController;
+    public static StateManager StateManager;
 
     static GM() {
         GameObject g = safeFind("__app");
         
-         SceneController = (SceneController)SafeComponent( g, "SceneController" );
+        AudioManager = (AudioManager)SafeComponent( g, "AudioManager" );
+        InventoryManager = (InventoryManager)SafeComponent( g, "InventoryManager" );
+        PlayerEvents = (PlayerEvents)SafeComponent( g, "PlayerEvents" );
+        SceneController = (SceneController)SafeComponent( g, "SceneController" );
+        StateManager = (StateManager)SafeComponent( g, "StateManager" );
 
  #if UNITY_EDITOR
         try {
@@ -20,7 +28,7 @@ static class GM {
         }
  #endif
     }
-    
+
     private static GameObject safeFind(string s) {
         GameObject g = GameObject.Find(s);
         if (g == null) 

@@ -1,8 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class StateManager {
-    public static StateManager Instance = null;
-    void Awake() {
-        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
-    }
+public class StateManager : MonoBehaviour {
 }
