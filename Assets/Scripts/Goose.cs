@@ -4,6 +4,8 @@ using System.Collections;
 public class Goose : MonoBehaviour
 {
     public Player_Control controller;
+    public Animator animator;
+
     public float runSpeed = 40f;
     private float horizontalMove = 0f;
     private bool jump = false;
@@ -25,6 +27,7 @@ public class Goose : MonoBehaviour
     
     void Update() {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("hozSpeed", Mathf.Abs(horizontalMove));
 
         //Moves character
         controller.Move(horizontalMove * Time.deltaTime, jump);

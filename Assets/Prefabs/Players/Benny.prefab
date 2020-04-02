@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3100275325823123470}
   - component: {fileID: 3100275325823123468}
   - component: {fileID: 3100275325823123467}
+  - component: {fileID: 1388338608226873496}
   m_Layer: 0
   m_Name: Benny
   m_TagString: Player
@@ -103,7 +104,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 6200000, guid: 22fbb789c93db24469b5751f6e3fd95a, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -120,12 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f08eac639864970993cd955ab8bc3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSmoothing: 0.05
   controller: {fileID: 3100275325823123470}
   runSpeed: 40
-  isEnabled: 0
   upForce: 0
-  isGrounded: 1
   platformCollider: {fileID: 0}
   gooseCollider: {fileID: 0}
 --- !u!114 &3100275325823123470
@@ -149,7 +147,6 @@ MonoBehaviour:
     m_Bits: 256
   horizontalMove: 0
   groundCheck: {fileID: 3100275326535165928}
-  grounded: 1
 --- !u!58 &3100275325823123468
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +156,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 3100275325823123458}
   m_Enabled: 0
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 22fbb789c93db24469b5751f6e3fd95a, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -192,6 +189,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8987764, y: 0.70566154}
   m_EdgeRadius: 0
+--- !u!95 &1388338608226873496
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100275325823123458}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f895dfa3478b1ed44b11ca7df5c441d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3100275326468894441
 GameObject:
   m_ObjectHideFlags: 0
