@@ -15,8 +15,7 @@ public struct coordinates {
     public int y;
 }
 
-public class inventoryController : MonoBehaviour {
-
+public class InventoryManager : MonoBehaviour {
     public string word = null;
     public bool isEnabled = false;
     public bool isKid;
@@ -75,11 +74,11 @@ public class inventoryController : MonoBehaviour {
 
         //    for (int i = 0; i < inventoryListFull.Length; i++)
         //{
-        if (inventoryListFull[0].holder == word) {
-            inventoryListFull[0].imgrep.enabled = true;
-        } else {
-            inventoryListFull[0].imgrep.enabled = false;
-        }
+        // if (inventoryListFull[0].holder == word) {
+        //     inventoryListFull[0].imgrep.enabled = true;
+        // } else {
+        //     inventoryListFull[0].imgrep.enabled = false;
+        // }
         //}
 	}
 

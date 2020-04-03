@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerEvents : MonoBehaviour {
-
-    public static UnityAction OnEDown = null;
-    public static UnityAction OnXDown = null;
-    public static UnityAction OnJumpDown = null;
+    public UnityAction OnEDown = null;
+    public UnityAction OnXDown = null;
+    public UnityAction OnJumpDown = null;
 
     void Update() {
         // check for active input

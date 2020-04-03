@@ -9,11 +9,11 @@ public class InventoryItem : MonoBehaviour {
     public GameObject inventoryController;
 
     void Awake() {
-        PlayerEvents.OnEDown += Obtain;
+        GM.PlayerEvents.OnEDown += Obtain;
     }
 
     void OnDestroy() {
-        PlayerEvents.OnEDown -= Obtain;
+        GM.PlayerEvents.OnEDown -= Obtain;
     }
 
     void Start () {
