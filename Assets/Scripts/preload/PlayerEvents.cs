@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class PlayerEvents : MonoBehaviour {
     public UnityAction OnEDown = null;
     public UnityAction OnXDown = null;
-    public UnityAction OnJumpDown = null;
+    public UnityAction OnSpaceDown = null;
 
     void Update() {
         // check for active input
@@ -17,6 +17,6 @@ public class PlayerEvents : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E) && OnEDown != null ) OnEDown();
         if (Input.GetKeyDown(KeyCode.X) && OnXDown != null ) OnXDown();
-        if (Input.GetKeyDown(KeyCode.Space) && OnJumpDown != null ) OnJumpDown();
+        if (Input.GetKeyDown(KeyCode.Space) && OnSpaceDown != null ) OnSpaceDown();
     }
 }

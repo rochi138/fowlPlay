@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ServiceLocator {
-    public class AudioService : AudioBase {
+    public class AudioService : MonoBehaviour, IAudioService {
 
-        void Awake() {
-            Locator.AudioService = this;
+        [SerializeField]
+        private AudioSource BackgroundAS = null;
+
+        private void Awake() {
+            // Locator.Register<AudioService>( "AudioService", this );
         }
 
-        // public override void playSound(int soundID) {
-        // // Play sound using audio api...
-        // }
+        private void OnDestroy() {
+            Locator.Unregister( "AudioService" );
+        }
 
-        // public override void stopSound(int soundID) {
-        // // Stop sound using audio api...
-        // }
+        public void playSound(int soundID) {
+        // Play sound using audio api...
+            Debug.Log("AudioService.playSound");
+        }
 
-        // public override void stopAllSounds() {
-        // // Stop all sounds using audio api...
-        // }
+        public void stopSound(int soundID) {
+        // Stop sound using audio api...
+        }
+
+        public void stopAllSounds() {
+        // Stop all sounds using audio api...
+        }
     };
 }

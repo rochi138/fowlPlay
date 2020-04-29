@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ServiceLocator;
 
 public class Goose : MonoBehaviour
 {
@@ -15,14 +16,15 @@ public class Goose : MonoBehaviour
     public Collider2D gooseCollider;
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
-    void Awake() {
-        GM.PlayerEvents.OnJumpDown += delegate { jump = true; };
-        GM.PlayerEvents.OnXDown += delegate { headbutt = true; };
+    void Start() {
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnSpaceDown += delegate { jump = true; };
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnXDown += delegate { headbutt = true; };
+        Locator.Get<IAudioService, AudioBase>( "AudioService" ).playSound(0);
     }
 
     void OnDestroy() {
-        GM.PlayerEvents.OnJumpDown -= delegate { jump = true; };
-        GM.PlayerEvents.OnXDown -= delegate { headbutt = true; };
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnSpaceDown -= delegate { jump = true; };
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnXDown -= delegate { headbutt = true; };
     }
     
     void Update() {

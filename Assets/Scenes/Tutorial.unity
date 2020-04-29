@@ -192,6 +192,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2061543080}
+    - target: {fileID: 3100275325823123469, guid: cfe259d874295ed4b960cec996f79ccc,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe259d874295ed4b960cec996f79ccc, type: 3}
 --- !u!1001 &777665937
