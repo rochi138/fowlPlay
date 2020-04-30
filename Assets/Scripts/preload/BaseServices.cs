@@ -1,19 +1,31 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ServiceLocator {
 
     public interface IGameService { }
-    public interface IBaseService : IGameService { 
-        IBaseService GetInstance();
-    }
 
-    public class BaseService : IBaseService {
-        private static BaseService instance_ = null;
-        public IBaseService GetInstance() { return (IBaseService)instance_; }
-        public BaseService() {
+    public class NullService : IGameService, IAudioService, IInventoryService, ISceneService, IStateService {
+        private static NullService instance_ = null;
+        public IGameService GetInstance() { return (IGameService)instance_; }
+        public NullService() {
             if ( instance_ == null )
                 instance_ = this;
         }
+
+        //IAudioService
+        public void playSound(int soundID) {}
+        public void stopSound(int soundID) {}
+        public void stopAllSounds() {}
+
+        //IInventoryService
+
+        //IPlayerEventsService
+
+        //ISceneService
+        public void LoadNextScene() { /* Do nothing. */ }
+
+        //IStateService
     }
 
     public interface IAudioService : IGameService {
@@ -22,31 +34,17 @@ namespace ServiceLocator {
         void stopAllSounds();
     }
 
-    public class AudioBase : BaseService, IAudioService {
-        public AudioBase() : base() { }
-        public void playSound(int soundID) { }
-        public void stopSound(int soundID) { }
-        public void stopAllSounds() { }
+    public interface IInventoryService : IGameService {}
 
-    };
+    public interface IPlayerEventsService : IGameService {
+        UnityAction OnEDown();
+        UnityAction OnXDown();
+        UnityAction OnSpaceDown();
+    }
 
-    public class InventoryBase : MonoBehaviour, IGameService {
+    public interface ISceneService : IGameService {
+        void LoadNextScene();
+    }
 
-        ~InventoryBase() {}
-
-    };
-
-    public interface ISceneService : IGameService {}
-    public class SceneBase : MonoBehaviour, IGameService {
-
-        ~SceneBase() {}
-        public virtual void LoadNextScene() { /* Do nothing. */ }
-        
-    };
-
-    public class StateBase : MonoBehaviour, IGameService {
-
-        ~StateBase() {}
-        
-    };
+    public interface IStateService : IGameService {}
 }

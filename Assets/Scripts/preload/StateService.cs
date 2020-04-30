@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ServiceLocator {
     
-    public class StateService : StateBase {
+    public class StateService : MonoBehaviour, IStateService {
 
         void Awake() {
             Locator.Register<StateService>( "StateService", this );

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace ServiceLocator {
     
-    public class SceneService : SceneBase {
+    public class SceneService : MonoBehaviour, ISceneService {
 
         void Awake() {
             Locator.Register<SceneService>( "SceneService", this );
@@ -14,7 +14,7 @@ namespace ServiceLocator {
         void OnDestroy() {
             Locator.Unregister( "SceneService" );
         }
-        public override void LoadNextScene() {
+        public void LoadNextScene() {
             SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1 );
         }
     };

@@ -17,14 +17,14 @@ public class Goose : MonoBehaviour
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
     void Start() {
-        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnSpaceDown += delegate { jump = true; };
-        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnXDown += delegate { headbutt = true; };
+        Locator.PlayerEvents.OnSpaceDown += delegate { jump = true; };
+        Locator.PlayerEvents.OnXDown += delegate { headbutt = true; };
         Locator.Get<IAudioService>( "AudioService" ).playSound(0);
     }
 
     void OnDestroy() {
-        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnSpaceDown -= delegate { jump = true; };
-        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnXDown -= delegate { headbutt = true; };
+        Locator.PlayerEvents.OnSpaceDown -= delegate { jump = true; };
+        Locator.PlayerEvents.OnXDown -= delegate { headbutt = true; };
     }
     
     void Update() {

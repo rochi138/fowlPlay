@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ServiceLocator {
     
-    public class InventoryService : InventoryBase {
+    public class InventoryService : MonoBehaviour, IInventoryService {
 
         void Awake() {
             Locator.Register<InventoryService>( "InventoryService", this );

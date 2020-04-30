@@ -6,7 +6,7 @@ using UnityEditor;
 static class GM {
     public static AudioManager AudioManager;
     public static InventoryManager InventoryManager;
-    public static PlayerEvents PlayerEvents;
+    public static ServiceLocator.PlayerEvents PlayerEvents;
     public static SceneController SceneManager;
     public static StateManager StateManager;
 
@@ -15,7 +15,7 @@ static class GM {
         
         AudioManager = (AudioManager)SafeComponent( g, "AudioManager" );
         InventoryManager = (InventoryManager)SafeComponent( g, "InventoryManager" );
-        PlayerEvents = (PlayerEvents)SafeComponent( g, "PlayerEvents" );
+        PlayerEvents = (ServiceLocator.PlayerEvents)SafeComponent( g, "PlayerEvents" );
         SceneManager = (SceneController)SafeComponent( g, "SceneController" );
         StateManager = (StateManager)SafeComponent( g, "StateManager" );
 
