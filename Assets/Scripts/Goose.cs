@@ -19,7 +19,7 @@ public class Goose : MonoBehaviour
     void Start() {
         // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnSpaceDown += delegate { jump = true; };
         // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnXDown += delegate { headbutt = true; };
-        Locator.Get<IAudioService, AudioBase>( "AudioService" ).playSound(0);
+        Locator.Get<IAudioService>( "AudioService" ).playSound(0);
     }
 
     void OnDestroy() {

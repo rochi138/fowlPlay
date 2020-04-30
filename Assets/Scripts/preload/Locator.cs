@@ -8,7 +8,10 @@ using UnityEditor;
 namespace ServiceLocator {
 
     static class Locator {
-        private static Dictionary<string, IGameService> services = new Dictionary<string, IGameService>();
+        public static Dictionary<string, IBaseService> m_BaseClasses = new Dictionary<string, IBaseService>() {
+            { "IAudioService" , new AudioBase() }
+        };
+        private static Dictionary<string, IGameService> m_Services = new Dictionary<string, IGameService>();
 
         static Locator() {
 #if UNITY_EDITOR
@@ -23,31 +26,28 @@ namespace ServiceLocator {
         // T is the interface ex IAudioService
         // U is the base service class with null methods ex AudioBase
         // if key not found, return instance of null service
-        public static T Get<T, U>( string key ) 
-            where T : IGameService
-            where U : IGameService, new()
-        {
-            if ( services.ContainsKey(key) )
-                return (T)services[key];
+        public static T Get<T>( string key ) where T : IGameService {
+            if ( m_Services.ContainsKey(key) )
+                return (T)m_Services[key];
             Debug.Log("Returning null service");
-            return (T)Activator.CreateInstance(typeof(U), new object[] {  });
+            return (T)m_BaseClasses[typeof(T).Name].GetInstance();
             
         }
 
         public static void Register<T>( string key, T service ) where T : IGameService {
-            if ( services.ContainsKey(key) ) {
+            if ( m_Services.ContainsKey(key) ) {
                 Debug.Log($"Duplicated key of {key}");
                 return;
             }
-            services.Add(key, service);
+            m_Services.Add(key, service);
         }
 
         public static void Unregister( string key ) {
-            if ( !services.ContainsKey(key) ) {
+            if ( !m_Services.ContainsKey(key) ) {
                 Debug.Log($"No such key of {key}");
                 return;
             }
-            services.Remove(key);
+            m_Services.Remove(key);
         }
     }
 }
