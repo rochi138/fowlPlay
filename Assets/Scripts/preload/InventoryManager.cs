@@ -20,7 +20,6 @@ public class InventoryManager : MonoBehaviour {
     public bool isEnabled = false;
     public bool isKid;
     public string[] receive = new string[2];
-    public GameObject canvasObj;
     public Image inventoryBase;
 
     public item keyCard;
@@ -34,13 +33,12 @@ public class InventoryManager : MonoBehaviour {
     public string[] rdata = new string[2];
 
     void Start () {
-        canvasObj = GameObject.FindGameObjectWithTag("canvas");
-        inventoryBase = GameObject.Find("InventoryBase").GetComponent<Image>();
+        // inventoryBase = GameObject.Find("InventoryBase").GetComponent<Image>();
 
         inventoryListFull[0].name = "keyCard";
-        inventoryListFull[0].imgrep = GameObject.Find("invKeyCard").GetComponent<Image>();
-        inventoryListFull[0].imgrep.enabled = false;
-        inventoryListFull[0].imgTran = GameObject.Find("invKeyCard").GetComponent<RectTransform>();
+        // inventoryListFull[0].imgrep = GameObject.Find("invKeyCard").GetComponent<Image>();
+        // inventoryListFull[0].imgrep.enabled = false;
+        // inventoryListFull[0].imgTran = GameObject.Find("invKeyCard").GetComponent<RectTransform>();
         inventoryListFull[0].holder = null;
 
         locations[0].x = 36;
