@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using ServiceLocator;
-using System;
 
 public class Goose : MonoBehaviour
 {
@@ -20,13 +19,13 @@ public class Goose : MonoBehaviour
     void Start() {
         IPlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
         playerEventsService.OnXDown += delegate { headbutt = true; };
-        playerEventsService.OnSpaceDown += (object sender, EventArgs e) => { jump = true; };
+        playerEventsService.OnSpaceDown += delegate { jump = true; };
     }
 
     void OnDestroy() {
         IPlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
         playerEventsService.OnXDown -= delegate { headbutt = true; };
-        playerEventsService.OnSpaceDown -= (object sender, EventArgs e) => { jump = true; };
+        playerEventsService.OnSpaceDown -= delegate { jump = true; };
     }
     
     void Update() {
