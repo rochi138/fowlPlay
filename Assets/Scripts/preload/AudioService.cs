@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ServiceLocator {
+
+    public interface IAudioService : IGameService {
+        void playSound(int soundID);
+        void stopSound(int soundID);
+        void stopAllSounds();
+    }
+    
     public class AudioService : MonoBehaviour, IAudioService {
 
         [SerializeField]
         private AudioSource BackgroundAS = null;
 
         private void Awake() {
-            // Locator.Register<AudioService>( "AudioService", this );
+            Locator.Register<AudioService>( "AudioService", this );
         }
 
         private void OnDestroy() {

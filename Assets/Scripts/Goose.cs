@@ -18,16 +18,15 @@ public class Goose : MonoBehaviour
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
     void Start() {
-        // PlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
-        // if ( playerEventsService != null )
-            Locator.Get<IPlayerEventsService>("PlayerEventsService").SpaceDown += (object sender, EventArgs e) => { jump = true; };
-        // Locator.PlayerEvents.OnXDown += delegate { headbutt = true; };
-        Locator.Get<IAudioService>( "AudioService" ).playSound(0);
+        IPlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
+        playerEventsService.OnXDown += delegate { headbutt = true; };
+        playerEventsService.OnSpaceDown += (object sender, EventArgs e) => { jump = true; };
     }
 
     void OnDestroy() {
-        Locator.Get<IPlayerEventsService>("PlayerEventsService").SpaceDown -= (object sender, EventArgs e) => { jump = true; };
-        // Locator.PlayerEvents.OnXDown -= delegate { headbutt = true; };
+        IPlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
+        playerEventsService.OnXDown -= delegate { headbutt = true; };
+        playerEventsService.OnSpaceDown -= (object sender, EventArgs e) => { jump = true; };
     }
     
     void Update() {

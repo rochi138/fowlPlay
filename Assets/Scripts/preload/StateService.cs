@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace ServiceLocator {
     
+    public interface IStateService : IGameService {}
+    
     public class StateService : MonoBehaviour, IStateService {
 
         void Awake() {

@@ -3,15 +3,19 @@ using UnityEngine.Events;
 using System;
 
 namespace ServiceLocator {
+
+    public interface IPlayerEventsService : IGameService {
+        event EventHandler OnEDown;
+        event EventHandler OnXDown;
+        event EventHandler OnSpaceDown;
+    }
+
     public class PlayerEventsService : MonoBehaviour, IPlayerEventsService {
         //Alphabetical-ish
-        // public UnityAction OnEDown = null;
-        // public UnityAction OnXDown = null;
-        // public UnityAction OnSpaceDown = null;
-        public event EventHandler SpaceDown;
-        protected virtual void OnSpaceDown()
-        {
-            EventHandler handler = SpaceDown;
+        public event EventHandler OnEDown;
+        public event EventHandler OnXDown;
+        public event EventHandler OnSpaceDown;
+        protected virtual void InputHandler( EventHandler handler ) {
             handler?.Invoke(this, EventArgs.Empty);
         }
 
@@ -32,9 +36,9 @@ namespace ServiceLocator {
             // Down = GetKeyDown
             // Up = GetKeyUp
 
-            // if (Input.GetKeyDown(KeyCode.E) && OnEDown != null ) OnEDown();
-            // if (Input.GetKeyDown(KeyCode.X) && OnXDown != null ) OnXDown();
-            if (Input.GetKeyDown(KeyCode.Space)) OnSpaceDown();
+            if (Input.GetKeyDown(KeyCode.E)) InputHandler( OnEDown );
+            if (Input.GetKeyDown(KeyCode.X)) InputHandler( OnXDown );
+            if (Input.GetKeyDown(KeyCode.Space)) InputHandler( OnSpaceDown );
         }
     }
 }

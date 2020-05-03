@@ -22,10 +22,15 @@ namespace ServiceLocator {
         //IInventoryService
 
         //IPlayerEventsService
-        public event EventHandler SpaceDown;
+        public event EventHandler OnEDown;
+        public event EventHandler OnXDown;
+        public event EventHandler OnSpaceDown;
         //This function just gets rid of warnings about eventhandlers not being used
         protected virtual void AllEventHandlers() {
-            EventHandler handler = SpaceDown;
+            EventHandler handler = null;
+            handler = OnEDown;
+            handler = OnXDown;
+            handler = OnSpaceDown;
         }
 
         //ISceneService
@@ -33,22 +38,4 @@ namespace ServiceLocator {
 
         //IStateService
     }
-
-    public interface IAudioService : IGameService {
-        void playSound(int soundID);
-        void stopSound(int soundID);
-        void stopAllSounds();
-    }
-
-    public interface IInventoryService : IGameService {}
-
-    public interface IPlayerEventsService : IGameService {
-        event EventHandler SpaceDown;
-    }
-
-    public interface ISceneService : IGameService {
-        void LoadNextScene();
-    }
-
-    public interface IStateService : IGameService {}
 }
