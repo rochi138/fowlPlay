@@ -4,8 +4,7 @@ using System;
 
 namespace ServiceLocator {
 
-    public interface IGameService {
-    }
+    public interface IGameService {}
 
     public class NullService : IGameService, IAudioService, IInventoryService, IPlayerEventsService, ISceneService, IStateService {
         private static NullService instance_ = null;
@@ -24,15 +23,13 @@ namespace ServiceLocator {
 
         //IPlayerEventsService
         public event EventHandler SpaceDown;
-        // protected virtual void OnSpaceDown()
-        // {
-        //     EventHandler handler = SpaceDown;
-        //     Debug.Log("Null");
-        //     handler?.Invoke(this, EventArgs.Empty);
-        // }
+        //This function just gets rid of warnings about eventhandlers not being used
+        protected virtual void AllEventHandlers() {
+            EventHandler handler = SpaceDown;
+        }
 
         //ISceneService
-        public void LoadNextScene() { /* Do nothing. */ }
+        public void LoadNextScene() {}
 
         //IStateService
     }

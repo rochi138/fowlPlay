@@ -12,7 +12,6 @@ namespace ServiceLocator {
         protected virtual void OnSpaceDown()
         {
             EventHandler handler = SpaceDown;
-            Debug.Log("PlayerEvents");
             handler?.Invoke(this, EventArgs.Empty);
         }
 

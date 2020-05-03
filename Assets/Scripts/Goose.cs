@@ -22,7 +22,7 @@ public class Goose : MonoBehaviour
         // if ( playerEventsService != null )
             Locator.Get<IPlayerEventsService>("PlayerEventsService").SpaceDown += (object sender, EventArgs e) => { jump = true; };
         // Locator.PlayerEvents.OnXDown += delegate { headbutt = true; };
-        // Locator.GetAudioBase( "AudioService" ).playSound(0);
+        Locator.Get<IAudioService>( "AudioService" ).playSound(0);
     }
 
     void OnDestroy() {
