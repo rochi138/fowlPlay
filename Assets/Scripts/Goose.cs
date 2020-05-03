@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using ServiceLocator;
+using System;
 
 public class Goose : MonoBehaviour
 {
@@ -17,14 +18,16 @@ public class Goose : MonoBehaviour
     private Vector3 playerVelocity = Vector3.zero;      //initial velocity
 
     void Start() {
-        Locator.PlayerEvents.OnSpaceDown += delegate { jump = true; };
-        Locator.PlayerEvents.OnXDown += delegate { headbutt = true; };
-        Locator.Get<IAudioService>( "AudioService" ).playSound(0);
+        // PlayerEventsService playerEventsService = Locator.Get<IPlayerEventsService>("PlayerEventsService");
+        // if ( playerEventsService != null )
+            Locator.Get<IPlayerEventsService>("PlayerEventsService").SpaceDown += (object sender, EventArgs e) => { jump = true; };
+        // Locator.PlayerEvents.OnXDown += delegate { headbutt = true; };
+        // Locator.GetAudioBase( "AudioService" ).playSound(0);
     }
 
     void OnDestroy() {
-        Locator.PlayerEvents.OnSpaceDown -= delegate { jump = true; };
-        Locator.PlayerEvents.OnXDown -= delegate { headbutt = true; };
+        Locator.Get<IPlayerEventsService>("PlayerEventsService").SpaceDown -= (object sender, EventArgs e) => { jump = true; };
+        // Locator.PlayerEvents.OnXDown -= delegate { headbutt = true; };
     }
     
     void Update() {

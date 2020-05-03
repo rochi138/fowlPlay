@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 namespace ServiceLocator {
 
-    public interface IGameService { }
+    public interface IGameService {
+    }
 
-    public class NullService : IGameService, IAudioService, IInventoryService, ISceneService, IStateService {
+    public class NullService : IGameService, IAudioService, IInventoryService, IPlayerEventsService, ISceneService, IStateService {
         private static NullService instance_ = null;
         public IGameService GetInstance() { return (IGameService)instance_; }
         public NullService() {
@@ -21,6 +23,13 @@ namespace ServiceLocator {
         //IInventoryService
 
         //IPlayerEventsService
+        public event EventHandler SpaceDown;
+        // protected virtual void OnSpaceDown()
+        // {
+        //     EventHandler handler = SpaceDown;
+        //     Debug.Log("Null");
+        //     handler?.Invoke(this, EventArgs.Empty);
+        // }
 
         //ISceneService
         public void LoadNextScene() { /* Do nothing. */ }
@@ -37,9 +46,7 @@ namespace ServiceLocator {
     public interface IInventoryService : IGameService {}
 
     public interface IPlayerEventsService : IGameService {
-        UnityAction OnEDown();
-        UnityAction OnXDown();
-        UnityAction OnSpaceDown();
+        event EventHandler SpaceDown;
     }
 
     public interface ISceneService : IGameService {
