@@ -3,26 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class InputHandler : MonoBehaviour
-
 {
-    // Char we controlling with keys
-    public new Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    // Input Keys
+    // Input Keys - should be the same across characters
     protected Command buttonLeft, buttonRight;
 
-
-    // Initiate class with character type
-    public InputHandler(Rigidbody2D rigidbody)
+    // Bind keys here
+    protected virtual void Start()
     {
-        rb = rigidbody;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
-    protected abstract void Start();
-
-    // Update is called once per frame
+    // Handle input here
     protected abstract void Update();
 
-    public abstract void HandleInput();
+    // Check for input and execute commands here
+    protected abstract void HandleInput();
 }

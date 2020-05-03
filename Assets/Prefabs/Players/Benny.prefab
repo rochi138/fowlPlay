@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3100275325823123457}
   - component: {fileID: 3100275325823123469}
   - component: {fileID: 3100275325823123471}
-  - component: {fileID: 3100275325823123470}
   - component: {fileID: 3100275325823123468}
   - component: {fileID: 3100275325823123467}
   - component: {fileID: 1388338608226873496}
@@ -121,32 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f08eac639864970993cd955ab8bc3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3100275325823123470}
+  groundCheck: {fileID: 0}
+  animator: {fileID: 0}
+  inputHandler: {fileID: 0}
   runSpeed: 40
-  upForce: 0
   platformCollider: {fileID: 0}
   gooseCollider: {fileID: 0}
---- !u!114 &3100275325823123470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100275325823123458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87c7b09879d74d1c9050a7121b3e891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSmoothing: 0.05
-  maxSpeed: 7
-  jumpTakeOffSpeed: 7
-  momentum: 0
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  horizontalMove: 0
-  groundCheck: {fileID: 3100275326535165928}
 --- !u!58 &3100275325823123468
 CircleCollider2D:
   m_ObjectHideFlags: 0

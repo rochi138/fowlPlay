@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class InputHandlerGoose : InputHandler
 {
-    public InputHandlerGoose(Rigidbody2D rb) : base(rb) { }
-
-    // Start is called before the first frame update
-    override protected void Start()
+    protected override void Start()
     {
-        buttonLeft = new GooseMoveHorizontal();
-        buttonRight = new GooseMoveHorizontal();
+        base.Start();
+        // Bind keys with commands
+        buttonLeft = new GooseCommands.MoveHorizontal();
+        buttonRight = new GooseCommands.MoveHorizontal();
     }
 
     // Update is called once per frame
-    override protected void Update()
+    protected override void Update()
     {
         HandleInput();
     }
-    public override void HandleInput()
+
+    // Check if key is pressed/held, then execute command
+    protected override void HandleInput()
     {
         // While left arrow key is held
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("left");
             buttonLeft.Execute(rb, buttonLeft);
-
         }
 
         // While right arrow key is held
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            Debug.Log("right");
             buttonRight.Execute(rb, buttonRight);
         }
     }

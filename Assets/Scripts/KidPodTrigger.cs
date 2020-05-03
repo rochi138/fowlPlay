@@ -12,15 +12,15 @@ public class KidPodTrigger : MonoBehaviour
         GameObject strikingBird = other.gameObject;
 
         //check if player is headbutting right side of pod
-        if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true)
-        {
-            Debug.Log("Collided with " + objectName);
-            animator.SetTrigger("FadeIn");
-            //disable kid pod
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            //enable opened pod
-            gameObject.transform.GetChild(1).gameObject.SetActive(true); 
-        }
+        //if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true)
+        //{
+        //    Debug.Log("Collided with " + objectName);
+        //    animator.SetTrigger("FadeIn");
+        //    //disable kid pod
+        //    gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //    //enable opened pod
+        //    gameObject.transform.GetChild(1).gameObject.SetActive(true); 
+        //}
 
     }
 

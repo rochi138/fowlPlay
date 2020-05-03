@@ -10,12 +10,12 @@ public class EmptyPodTrigger : MonoBehaviour {
         var objectName = other.gameObject.name;
         GameObject strikingBird = other.gameObject;
 
-        //check if player is headbutting right side of pod
-        if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true && CheckCollidingSide(other) == true) {
-            Debug.Log("Collided with " + objectName);
-            animator.SetBool("TipPod", true);
-            gameObject.GetComponentInChildren<BoxCollider2D>().isTrigger = false;
-        }  
+        ////check if player is headbutting right side of pod
+        //if (strikingBird.GetComponent<Player_Control>().getHeadbutt() == true && CheckCollidingSide(other) == true) {
+        //    Debug.Log("Collided with " + objectName);
+        //    animator.SetBool("TipPod", true);
+        //    gameObject.GetComponentInChildren<BoxCollider2D>().isTrigger = false;
+        //}  
     }
 
     private bool CheckCollidingSide(Collider2D other) {
