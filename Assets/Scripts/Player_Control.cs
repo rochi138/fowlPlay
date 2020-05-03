@@ -15,7 +15,8 @@ public class Player_Control : MonoBehaviour
 
     [SerializeField] private Transform groundCheck;
 
-    private Rigidbody2D playerRigidbody;
+    public Animator animator;
+    protected static Rigidbody2D playerRigidbody;
     private bool facingRight = true;
     public bool grounded{ 
         get { return Physics2D.OverlapCircle(groundCheck.position, GameConstants.groundedRadius, groundLayers); } 
@@ -51,32 +52,32 @@ public class Player_Control : MonoBehaviour
         headbutt = false;
     }
 
-    public void Move(float move, bool jump) {
-        //find target velocity
-        Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
+    //public void Move(float move, bool jump) {
+    //    //find target velocity
+    //    Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
 
-        //smooths transition from one velocity to next
-        playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
+    //    //smooths transition from one velocity to next
+    //    playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
 
-        if (move > 0 && !facingRight) {
-            Flip();
-        } else if (move < 0 && facingRight) {
-            Flip();
-        }
+    //    if (move > 0 && !facingRight) {
+    //        Flip();
+    //    } else if (move < 0 && facingRight) {
+    //        Flip();
+    //    }
 
-        if (jump && grounded) {
-            playerRigidbody.AddForce(new Vector2(0f, jumpForce));
-        }
-    }
+    //    if (jump && grounded) {
+    //        playerRigidbody.AddForce(new Vector2(0f, jumpForce));
+    //    }
+    //}
 
-    public void Flip() {
-        // Change player orientation
-        facingRight = !facingRight;
+    //public void Flip() {
+    //    // Change player orientation
+    //    facingRight = !facingRight;
 
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-    }
+    //    Vector3 scale = transform.localScale;
+    //    scale.x *= -1;
+    //    transform.localScale = scale;
+    //}
     public bool getHeadbutt() {
         return headbutt;
     }

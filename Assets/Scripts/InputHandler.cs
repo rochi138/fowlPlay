@@ -6,11 +6,17 @@ public abstract class InputHandler : MonoBehaviour
 
 {
     // Char we controlling with keys
-    public Transform charTrans; 
+    public new Rigidbody2D rb;
 
-    // keys needed
-    private Command buttonLeft, buttonRight;
+    // Input Keys
+    protected Command buttonLeft, buttonRight;
 
+
+    // Initiate class with character type
+    public InputHandler(Rigidbody2D rigidbody)
+    {
+        rb = rigidbody;
+    }
 
     // Start is called before the first frame update
     protected abstract void Start();
@@ -18,17 +24,5 @@ public abstract class InputHandler : MonoBehaviour
     // Update is called once per frame
     protected abstract void Update();
 
-    public void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            buttonLeft = new MoveLeft();
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            buttonRight = new MoveRight();
-        }
-
-    }
+    public abstract void HandleInput();
 }

@@ -5,41 +5,61 @@ using UnityEngine;
 
 public abstract class Command : MonoBehaviour
 {
-    // how far character moves
-    protected float moveDistance = 1f;
+    protected float horizontalMove = 0f;
+    protected float jumpForce = 410f;
+    protected float maxSpeed = 7;
+    protected float jumpTakeOffSpeed = 7;
+    protected float momentum;
+    public LayerMask groundLayers = 0;
+    protected Vector3 playerAcceleration = Vector3.zero;
+    protected float runSpeed = 30f;
 
-    public abstract void Execute(Transform charTrans, Command command);
+    public abstract void Execute(Rigidbody2D rigidbody, Command command);
 
-    public virtual void Move(Transform charTrans) { }
+    public virtual void Move(Rigidbody2D rigidbody) { }
 
 }
 
 // -- Child classes -- //
     
-public class MoveForward : Command
+public class GooseMoveHorizontal : Command
 {
-    public override void Execute(Transform charTrans, Command command)
+    [Range(0, .3f)] [SerializeField] private readonly float movementSmoothing = .05f;
+
+    public override void Execute(Rigidbody2D rigidbody, Command command)
     {
-        Move(charTrans);
+        Move(rigidbody);
     }
 
-    public override void Move(Transform charTrans)
+    public override void Move(Rigidbody2D rigidbody)
     {
-        charTrans.Translate(charTrans.forward * moveDistance);
-    }
-}
+        void Flip()
+        {
+            Vector3 scale = rigidbody.transform.localScale;
+            scale.x *= -1;
+            rigidbody.transform.localScale = scale;
+        }
 
-public class MoveBackward : Command
-{
-    public override void Execute(Transform charTrans, Command command)
-    {
-        Move(charTrans);
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        if (horizontalMove > 0 && rigidbody.transform.localScale.x < 0)
+        {
+            Flip();
+        }
+        else if (horizontalMove < 0 && rigidbody.transform.localScale.x > 0)
+        {
+            Flip();
+        }
+
+        Vector3 targetVelocity = new Vector2(horizontalMove * Time.deltaTime * 10f, rigidbody.velocity.y);
+
+        
+        //rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref playerAcceleration, movementSmoothing);
+        rigidbody.velocity = targetVelocity;
+
+
     }
 
-    public override void Move(Transform charTrans)
-    {
-        charTrans.Translate(-charTrans.forward * moveDistance);
-    }
 }
 
 

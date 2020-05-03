@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Goose : MonoBehaviour
+public class Goose : Player_Control
 {
-    public Player_Control controller;
-    public Animator animator;
+
+    //public static Player_Control controller;
+    public InputHandler inputHandler;
 
     public float runSpeed = 40f;
-    private float horizontalMove = 0f;
+    //private float horizontalMove = 0f;
     private bool jump = false;
     private bool headbutt = false;
     public float upForce;                   //Upward force of the "flap".
@@ -28,15 +29,11 @@ public class Goose : MonoBehaviour
     void Update() {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("hozSpeed", Mathf.Abs(horizontalMove));
-
-        //Moves character
-        controller.Move(horizontalMove * Time.deltaTime, jump);
-        jump = false;
-
-        //goose headbutts
-        if (headbutt == true) {
-            controller.Headbutt();
-            headbutt = false;
-        }
+    }
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
+        inputHandler = new InputHandlerGoose(playerRigidbody);
     }
 }
