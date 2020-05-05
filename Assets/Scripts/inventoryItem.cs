@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ServiceLocator;
 
 public class InventoryItem : MonoBehaviour {
 
@@ -8,18 +9,15 @@ public class InventoryItem : MonoBehaviour {
     public bool isTouched = false;
     public GameObject inventoryController;
 
-    void Awake() {
-        GM.PlayerEvents.OnEDown += Obtain;
-    }
-
-    void OnDestroy() {
-        GM.PlayerEvents.OnEDown -= Obtain;
-    }
-
     void Start () {
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnEDown += Obtain;
         inventoryController = GameObject.FindGameObjectWithTag("inventoryController");
         send[0] = this.name;
 	}
+
+    void OnDestroy() {
+        // Locator.Get<PlayerEventsService>( "PlayerEventsService" ).OnEDown -= Obtain;
+    }
 	
 	void Obtain () {
         if (isTouched) {
